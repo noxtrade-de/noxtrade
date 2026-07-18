@@ -72,8 +72,8 @@ account, no keys — just watch how the agent thinks.
 
 - **Bring your own key (BYOK).** Your Binance API keys never leave your machine.
 - Set the key to **Spot trading ON, Withdrawals OFF**, with an IP allow-list.
-  The agent verifies this and refuses to run with withdrawal permissions — this
-  protects you even from us.
+  On startup the agent checks your key and **refuses to run if withdrawals are
+  enabled** — this protects you even from us.
 - **We never take custody of your funds.** There is no NoxTrade cloud holding money.
 
 ## Get it

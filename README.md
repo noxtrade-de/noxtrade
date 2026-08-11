@@ -8,7 +8,7 @@ with the full source code in your hands. No cloud holding your API keys. No mont
 subscription. And an honest, public track record that shows the losing weeks too.
 
 This repository is the documentation and "how it works" — **not** the product itself.
-The product (with source code) is a one-time purchase at **[noxtrade.de](https://noxtrade.de/en)**.
+The product (with source code) is a one-time purchase at **[noxtrade.de](https://www.noxtrade.de/en)**.
 
 ---
 
@@ -60,8 +60,25 @@ the secret sauce.)*
 
 ## See it live
 
-The agent's real equity curve — vs. simply holding BTC, including the losing
-stretches — is public here: **[live results](https://noxtrade.de/en/live.html)**.
+<!-- ZAHLEN-ANFANG (erzeugt von tools/readme-zahlen.py — nicht von Hand aendern) -->
+Real money, real Binance account, running since **23 June 2026**. Numbers as of
+**11 August 2026**:
+
+| | |
+|---|---|
+| Closed trades | **60** (18 winners — a **30 %** hit rate) |
+| Return on the traded capital | **+2.69 %** |
+| Holding BTC over the same window | +0.44 % |
+| Difference | **+2.25 pp** |
+| Currently in cash | **89.5 %** |
+
+A 30 % hit rate is not a bug: average winner
+**+5.9 %**, average loser **-4.1 %**.
+The geometry has to carry it, and right now it barely does.
+<!-- ZAHLEN-ENDE -->
+
+The full equity curve — vs. simply holding BTC, including the losing stretches —
+is public here: **[live results](https://www.noxtrade.de/en/live.html)**.
 
 ## Try it without a Binance account
 
@@ -79,7 +96,7 @@ account, no keys — just watch how the agent thinks.
 ## Get it
 
 One-time purchase, source code + 12 months of updates, at
-**[noxtrade.de](https://noxtrade.de/en)**.
+**[noxtrade.de](https://www.noxtrade.de/en)**.
 
 Honest note on price: there are excellent *free* open-source bots (Freqtrade,
 Hummingbot, OctoBot). Those are frameworks — you write and tune the strategy. NoxTrade

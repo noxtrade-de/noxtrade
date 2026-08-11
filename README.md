@@ -67,14 +67,12 @@ Real money, real Binance account, running since **23 June 2026**. Numbers as of
 | | |
 |---|---|
 | Closed trades | **60** (18 winners — a **30 %** hit rate) |
-| Return on the traded capital | **+2.69 %** |
+| Return on the traded capital | **+2.62 %** |
 | Holding BTC over the same window | +0.44 % |
-| Difference | **+2.25 pp** |
-| Currently in cash | **89.5 %** |
+| Difference | **+2.19 pp** |
+| Currently in cash | **89.6 %** |
 
-A 30 % hit rate is not a bug: average winner
-**+5.9 %**, average loser **-4.1 %**.
-The geometry has to carry it, and right now it barely does.
+A 30 % hit rate is not a bug: average winner **+5.9 %**, average loser **-4.1 %**. The geometry has to carry it, and right now it barely does.
 <!-- ZAHLEN-ENDE -->
 
 The full equity curve — vs. simply holding BTC, including the losing stretches —

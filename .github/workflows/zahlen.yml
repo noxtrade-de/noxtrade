@@ -1,0 +1,65 @@
+name: Zahlen im README aktualisieren
+
+# Warum als Action und nicht als Auftrag auf einem unserer Rechner:
+# Die Quelle ist ein oeffentlicher Endpunkt, das Ziel ist dieses Repo — beides
+# liegt hier. Damit braucht es KEINEN Zugangsschluessel auf der VM und keine
+# GitHub-Schreibrechte fuer Jarvis. Der Token kommt von der Plattform und gilt
+# nur fuer dieses Repo.
+#
+# Faellt der Endpunkt aus, schlaegt der Lauf FEHL statt still nichts zu tun —
+# GitHub schickt dem Eigentuemer dann eine Mail. Ein Zahlen-Block, der nicht
+# mehr nachgezogen wird, sieht Woche fuer Woche genauso vertrauenswuerdig aus
+# wie am Tag der Messung; genau davor schuetzt der laute Fehlschlag.
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"      # montags 05:17 UTC
+  workflow_dispatch:           # jederzeit von Hand ausloesbar
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zahlen
+  cancel-in-progress: false
+
+jobs:
+  aktualisieren:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Zahlen holen und Block neu schreiben
+        run: |
+          set +e
+          python3 tools/readme-zahlen.py 2> hinweise.txt
+          code=$?
+          set -e
+          if [ -s hinweise.txt ]; then
+            {
+              echo "### Hinweise des Erzeugers"
+              echo '```'
+              cat hinweise.txt
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            cat hinweise.txt >&2
+          fi
+          rm -f hinweise.txt
+          exit $code
+
+      - name: Committen, wenn sich etwas geaendert hat
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "Zahlen unveraendert — nichts zu committen." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "docs: Zahlen aktualisiert (automatisch)"
+          git push
+          {
+            echo "### Aktualisiert"
+            echo '```'
+            git show --stat --oneline HEAD | head -5
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

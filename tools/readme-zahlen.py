@@ -49,9 +49,28 @@ def hole(url: str) -> dict:
         return json.loads(r.read().decode("utf-8"))
 
 
+def veraltet(h: dict, heute: datetime.date) -> int:
+    """Wie viele Tage sind die handgepflegten Zahlen alt?"""
+    return (heute - datetime.date.fromisoformat(h["stand"])).days
+
+
 def block(d: dict, h: dict, heute: datetime.date) -> str:
     seit = datetime.date.fromisoformat(d["benchmark_since"][:10])
     cash = 100 * d["cash"] / d["total_value"] if d.get("total_value") else 0
+
+    # Der handgepflegte Satz faellt RAUS, sobald er zu alt ist — er wird nicht
+    # etwa mit altem Wert weiterveroeffentlicht. Eine Zahl, die niemand mehr
+    # nachgerechnet hat, sieht im Text genauso vertrauenswuerdig aus wie eine
+    # frische; das ist in einem Text ueber Ehrlichkeit der teuerste Fehler.
+    # Lieber steht dort nichts als etwas Ungeprueftes.
+    if veraltet(h, heute) > VERFALL_TAGE:
+        geometrie = ""
+    else:
+        geometrie = (f"\n\nA {d['win_rate']:.0f} % hit rate is not a bug: average winner "
+                     f"**{h['avg_gewinner_pct']:+.1f} %**, average loser "
+                     f"**{h['avg_verlierer_pct']:+.1f} %**. The geometry has to carry it, "
+                     f"and right now it barely does.")
+
     return f"""{ANFANG}
 Real money, real Binance account, running since **{seit:%-d %B %Y}**. Numbers as of
 **{heute:%-d %B %Y}**:
@@ -62,11 +81,7 @@ Real money, real Binance account, running since **{seit:%-d %B %Y}**. Numbers as
 | Return on the traded capital | **{d['agent_trading_roi']:+.2f} %** |
 | Holding BTC over the same window | {d['btc_hold_roi']:+.2f} % |
 | Difference | **{d['alpha']:+.2f} pp** |
-| Currently in cash | **{cash:.1f} %** |
-
-A {d['win_rate']:.0f} % hit rate is not a bug: average winner
-**{h['avg_gewinner_pct']:+.1f} %**, average loser **{h['avg_verlierer_pct']:+.1f} %**.
-The geometry has to carry it, and right now it barely does.
+| Currently in cash | **{cash:.1f} %** |{geometrie}
 {ENDE}"""
 
 
@@ -76,11 +91,13 @@ def main() -> int:
     a = p.parse_args()
 
     heute = datetime.date.today()
-    alt = (heute - datetime.date.fromisoformat(HANDGEPFLEGT["stand"])).days
+    alt = veraltet(HANDGEPFLEGT, heute)
     if alt > VERFALL_TAGE:
-        print(f"WARNUNG: die handgepflegten Zahlen (API-Kosten, Trefferbilanz) sind "
-              f"{alt} Tage alt — nachrechnen und HANDGEPFLEGT anpassen, bevor das "
-              f"hier oeffentlich steht.", file=sys.stderr)
+        print(f"WARNUNG: die handgepflegte Trefferbilanz ist {alt} Tage alt "
+              f"(Grenze {VERFALL_TAGE}). Der Satz wurde deshalb aus dem README "
+              f"ENTFERNT statt mit altem Wert weiterveroeffentlicht. Zum "
+              f"Zurueckholen: Durchschnitt der Gewinner/Verlierer neu rechnen "
+              f"und HANDGEPFLEGT anpassen.", file=sys.stderr)
 
     try:
         d = hole(QUELLE)

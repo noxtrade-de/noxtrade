@@ -62,17 +62,17 @@ the secret sauce.)*
 
 <!-- ZAHLEN-ANFANG (erzeugt von tools/readme-zahlen.py — nicht von Hand aendern) -->
 Real money, real Binance account, running since **23 June 2026**. Numbers as of
-**17 August 2026**:
+**24 August 2026**:
 
 | | |
 |---|---|
-| Closed trades | **61** (18 winners — a **30 %** hit rate) |
-| Return on the traded capital | **+2.32 %** |
-| Holding BTC over the same window | -0.33 % |
-| Difference | **+2.65 pp** |
-| Currently in cash | **90.2 %** |
+| Closed trades | **79** (23 winners — a **29 %** hit rate) |
+| Return on the traded capital | **+12.32 %** |
+| Holding BTC over the same window | +21.16 % |
+| Difference | **-8.85 pp** |
+| Currently in cash | **69.7 %** |
 
-A 30 % hit rate is not a bug: average winner **+5.9 %**, average loser **-4.1 %**. The geometry has to carry it, and right now it barely does.
+A 29 % hit rate is not a bug: average winner **+5.9 %**, average loser **-4.1 %**. The geometry has to carry it, and right now it barely does.
 <!-- ZAHLEN-ENDE -->
 
 The full equity curve — vs. simply holding BTC, including the losing stretches —

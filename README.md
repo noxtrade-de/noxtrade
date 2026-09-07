@@ -62,15 +62,15 @@ the secret sauce.)*
 
 <!-- ZAHLEN-ANFANG (erzeugt von tools/readme-zahlen.py — nicht von Hand aendern) -->
 Real money, real Binance account, running since **23 June 2026**. Numbers as of
-**31 August 2026**:
+**7 September 2026**:
 
 | | |
 |---|---|
-| Closed trades | **104** (23 winners — a **22 %** hit rate) |
-| Return on the traded capital | **+7.23 %** |
-| Holding BTC over the same window | +23.34 % |
-| Difference | **-16.11 pp** |
-| Currently in cash | **40.7 %** |
+| Closed trades | **107** (23 winners — a **22 %** hit rate) |
+| Return on the traded capital | **+6.42 %** |
+| Holding BTC over the same window | +21.94 % |
+| Difference | **-15.52 pp** |
+| Currently in cash | **21.7 %** |
 
 A 22 % hit rate is not a bug: average winner **+5.9 %**, average loser **-4.1 %**. The geometry has to carry it, and right now it barely does.
 <!-- ZAHLEN-ENDE -->

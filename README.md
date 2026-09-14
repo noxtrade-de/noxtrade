@@ -62,7 +62,7 @@ the secret sauce.)*
 
 <!-- ZAHLEN-ANFANG (erzeugt von tools/readme-zahlen.py — nicht von Hand aendern) -->
 Real money, real Binance account, running since **23 June 2026**. Numbers as of
-**7 September 2026**:
+**14 September 2026**:
 
 | | |
 |---|---|
